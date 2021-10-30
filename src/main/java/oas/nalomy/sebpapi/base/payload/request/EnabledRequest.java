@@ -14,6 +14,6 @@ public class EnabledRequest {
 	private long id;
 
 	@NotNull
-	private boolean enabled;
+	private boolean enabledOrDisabled;
 
 }

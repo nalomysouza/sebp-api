@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/v1/apoios-recebidos")
+@RequestMapping("/v1/apoio-recebido")
 public class ApoioRecebidoController {
 
 	@Autowired

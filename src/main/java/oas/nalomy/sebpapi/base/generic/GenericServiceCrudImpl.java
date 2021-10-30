@@ -54,4 +54,10 @@ public class GenericServiceCrudImpl<T extends BaseDomain, D extends BaseReposito
 	public void delete(Long id) {
 		this.repository.deleteById(id);
 	}
+
+	@Transactional
+	@Override
+	public void enabledOrDisabled(Long id, boolean enabledOrDisabled) {
+		this.repository.enabledOrDisabled(id, enabledOrDisabled);
+	}
 }

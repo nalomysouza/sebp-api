@@ -21,5 +21,7 @@ public interface GenericServiceCrud<T extends BaseDomain, D extends BaseReposito
 
 	void delete(Long id);
 
+	void enabledOrDisabled(Long id, boolean enabledOrDisabled);
+
 	long count();
 }

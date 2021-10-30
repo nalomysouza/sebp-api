@@ -15,42 +15,42 @@ public class HelpController {
 	@Autowired
 	private MunicipioRepository municipioRepository;
 
-	@GetMapping("escolaridades")
+	@GetMapping("escolaridade")
 	public ResponseEntity<?> getEscolaridades() {
 		return ResponseEntity.ok(Escolaridade.values());
 	}
 
-	@GetMapping("intervalos/livros")
+	@GetMapping("intervalo-livro")
 	public ResponseEntity<?> getIntervalosLivro() {
 		return ResponseEntity.ok(IntervaloLivro.values());
 	}
 
-	@GetMapping("motivos/frequencias")
+	@GetMapping("motivo-frequencia")
 	public ResponseEntity<?> getMotivosFrequencia() {
 		return ResponseEntity.ok(MotivoFrequencia.values());
 	}
 
-	@GetMapping("periodicos")
+	@GetMapping("periodico")
 	public ResponseEntity<?> getPeriodicos() {
 		return ResponseEntity.ok(Periodico.values());
 	}
 
-	@GetMapping("tipos/biliotecas")
+	@GetMapping("tipo-bilioteca")
 	public ResponseEntity<?> getTiposBilioteca() {
 		return ResponseEntity.ok(TipoBiblioteca.values());
 	}
 
-	@GetMapping("municipios")
+	@GetMapping("municipio")
 	public ResponseEntity<?> getMunicipios() {
 		return ResponseEntity.ok(municipioRepository.getMunicipios());
 	}
 
-	@GetMapping("mesorregioes")
+	@GetMapping("mesorregiao")
 	public ResponseEntity<?> getMesorregioes() {
 		return ResponseEntity.ok(municipioRepository.getMesorregioes());
 	}
 
-	@GetMapping("microrregioes")
+	@GetMapping("microrregiao")
 	public ResponseEntity<?> getMicrorregioes() {
 		return ResponseEntity.ok(municipioRepository.getMicrorregioes());
 	}

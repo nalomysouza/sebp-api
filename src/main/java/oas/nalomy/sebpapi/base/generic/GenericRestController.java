@@ -47,7 +47,7 @@ public class GenericRestController<T extends BaseDomain, S extends BaseService<T
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ResponseEntity.class))) }),
 			@ApiResponse(responseCode = "204", description = "Nenhum objeto encontrado", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Nenhum recurso encontrado", content = @Content)})
-	@GetMapping("/listar")
+	@GetMapping("/all")
 	public List<T> all() {
 		return this.service.all();
 	}

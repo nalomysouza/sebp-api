@@ -13,6 +13,6 @@ import org.springframework.data.repository.query.Param;
 public interface BaseRepository<T extends BaseDomain>
 		extends JpaRepository<T, Serializable>, JpaSpecificationExecutor<T> {
 	@Modifying
-	@Query("update T o set o.enabled = :enabledOrDisabled where o.id = :id")
+	@Query("update #{#entityName} set enabled = :enabledOrDisabled where id = :id")
 	void enabledOrDisabled(@Param(value = "id") Long id, @Param(value = "enabledOrDisabled") boolean enabledOrDisabled);
 }

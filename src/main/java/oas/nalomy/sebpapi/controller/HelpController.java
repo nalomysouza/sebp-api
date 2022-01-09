@@ -2,6 +2,7 @@ package oas.nalomy.sebpapi.controller;
 
 import oas.nalomy.sebpapi.domain.help.*;
 import oas.nalomy.sebpapi.repository.help.MunicipioRepository;
+import oas.nalomy.sebpapi.repository.help.TipoBibliotecaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,9 @@ public class HelpController {
 
 	@Autowired
 	private MunicipioRepository municipioRepository;
+
+	@Autowired
+	private TipoBibliotecaRepository tipoBibliotecaRepository;
 
 	@GetMapping("escolaridade")
 	public ResponseEntity<?> getEscolaridades() {
@@ -37,7 +41,7 @@ public class HelpController {
 
 	@GetMapping("tipo-bilioteca")
 	public ResponseEntity<?> getTiposBilioteca() {
-		return ResponseEntity.ok(TipoBiblioteca.values());
+		return ResponseEntity.ok(tipoBibliotecaRepository.findAll());
 	}
 
 	@GetMapping("municipio")

@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,8 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import oas.nalomy.sebpapi.base.domain.base.BaseDomain;
-import oas.nalomy.sebpapi.domain.help.Municipio;
-import oas.nalomy.sebpapi.domain.help.TipoBiblioteca;
+import oas.nalomy.sebpapi.domain.help.*;
 
 @Getter
 @Setter
@@ -70,8 +67,8 @@ public class Biblioteca extends BaseDomain {
 	@JoinColumn(name = "orgao_id")
 	private Orgao orgao;
 
-	@Column(name = "tipo_biblioteca_id")
-	@Enumerated(EnumType.ORDINAL)
+	@ManyToOne
+	@JoinColumn(name = "tipo_biblioteca_id")
 	private TipoBiblioteca tipoBiblioteca;
 
 	private String observacoes;

@@ -1,6 +1,7 @@
 package oas.nalomy.sebpapi.service;
 
 import oas.nalomy.sebpapi.base.generic.GenericServiceCrudImpl;
+import oas.nalomy.sebpapi.domain.Acervo;
 import oas.nalomy.sebpapi.domain.ApoioRecebido;
 import oas.nalomy.sebpapi.domain.Biblioteca;
 import oas.nalomy.sebpapi.repository.BibliotecaRepository;
@@ -15,5 +16,10 @@ public class BibliotecaService extends GenericServiceCrudImpl<Biblioteca, Biblio
     @Transactional(readOnly = true)
     public Optional<ApoioRecebido> findApoioRecebidoByBiblioteca(Long id) {
         return this.repository.findApoioRecebidoByBiblioteca(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Acervo> findAcervoByBiblioteca(Long id) {
+        return this.repository.findAcervoByBiblioteca(id);
     }
 }

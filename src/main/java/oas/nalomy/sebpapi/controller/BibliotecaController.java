@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import oas.nalomy.sebpapi.base.generic.GenericRestController;
+import oas.nalomy.sebpapi.domain.Acervo;
 import oas.nalomy.sebpapi.domain.ApoioRecebido;
 import oas.nalomy.sebpapi.domain.Biblioteca;
 import oas.nalomy.sebpapi.service.BibliotecaService;
@@ -27,6 +28,16 @@ public class BibliotecaController extends GenericRestController<Biblioteca, Bibl
     @GetMapping("/{id}/apoio-recebido")
     public ResponseEntity<ApoioRecebido> findApoioRecebidoByBiblioteca(@PathVariable(value = "id") Long id) {
         Optional<ApoioRecebido> response = service.findApoioRecebidoByBiblioteca(id);
+        return response.isPresent() ? ResponseEntity.ok(response.get()) : ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Get acervo pelo {id} biblioteca")
+    @ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Objeto encontrado pelo {id}", content = {
+            @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ResponseEntity.class))) }),
+            @ApiResponse(responseCode = "204", description = "Nenhum objeto encontrado com este {id}", content = @Content) })
+    @GetMapping("/{id}/acervo")
+    public ResponseEntity<Acervo> findAcervoByBiblioteca(@PathVariable(value = "id") Long id) {
+        Optional<Acervo> response = service.findAcervoByBiblioteca(id);
         return response.isPresent() ? ResponseEntity.ok(response.get()) : ResponseEntity.noContent().build();
     }
 }

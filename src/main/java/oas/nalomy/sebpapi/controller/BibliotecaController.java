@@ -25,7 +25,7 @@ public class BibliotecaController extends GenericRestController<Biblioteca, Bibl
             @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ResponseEntity.class))) }),
             @ApiResponse(responseCode = "204", description = "Nenhum objeto encontrado com este {id}", content = @Content) })
     @GetMapping("/{id}/apoio-recebido")
-    public ResponseEntity<?> findApoioRecebidoByBiblioteca(@RequestParam Long id) {
+    public ResponseEntity<ApoioRecebido> findApoioRecebidoByBiblioteca(@PathVariable(value = "id") Long id) {
         Optional<ApoioRecebido> response = service.findApoioRecebidoByBiblioteca(id);
         return response.isPresent() ? ResponseEntity.ok(response.get()) : ResponseEntity.noContent().build();
     }

@@ -2,6 +2,7 @@ package oas.nalomy.sebpapi.base.generic;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -36,10 +37,12 @@ public class GenericRestController<T extends BaseDomain, S extends BaseService<T
 	@Operation(summary = "Get pelo {id}")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Objeto encontrado pelo {id}", content = {
 			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ResponseEntity.class))) }),
-			@ApiResponse(responseCode = "404", description = "Nenhum objeto encontrado com este {id}", content = @Content) })
+			@ApiResponse(responseCode = "204", description = "Nenhum objeto encontrado com este {id}", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Nenhum recurso encontrado com este {id}", content = @Content) })
 	@GetMapping("/{id}")
-	public T read(@PathVariable(value = "id") long id) {
-		return this.service.findById(id).orElseThrow(() -> new SebpNotFoundException());
+	public ResponseEntity<T> read(@PathVariable(value = "id") Long id) {
+		Optional<T> response = service.findById(id);
+		return response.isPresent() ? ResponseEntity.ok(response.get()) : ResponseEntity.noContent().build();
 	}
 
 	@Operation(summary = "Get todos")
@@ -81,7 +84,7 @@ public class GenericRestController<T extends BaseDomain, S extends BaseService<T
 	@Operation(summary = "Atualizando um objeto")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Objeto atualizado", content = {
 			@Content(mediaType = "application/json", schema = @Schema(implementation = ResponseEntity.class)) }),
-			@ApiResponse(responseCode = "404", description = "Nenhum objeto encontrado com este {id}", content = @Content) })
+			@ApiResponse(responseCode = "404", description = "Nenhum recurso encontrado com este {id}", content = @Content) })
 	@PutMapping(value = "/{id}")
 	public T update(@PathVariable(value = "id") long id, @Valid @RequestBody T entity) {
 		return this.service.findById(id).map(o -> {

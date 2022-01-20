@@ -34,16 +34,6 @@ public class ApoioRecebidoController {
 	@Autowired
 	private ApoioRecebidoRepository repository;
 
-	@Operation(summary = "Get apoio recebido pelo {id} biblioteca")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Objeto encontrado pelo {id}", content = {
-			@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ResponseEntity.class))) }),
-			@ApiResponse(responseCode = "204", description = "Nenhum objeto encontrado com este {id}", content = @Content) })
-	@GetMapping("")
-	public ResponseEntity<?> findByBiblioteca(@RequestParam Long biblioteca) {
-		Optional<ApoioRecebido> response = this.repository.findByBiblioteca(biblioteca);
-		return response.isPresent() ? ResponseEntity.ok(response.get()) : ResponseEntity.noContent().build();
-	}
-
 	@Operation(summary = "Inserindo um objeto")
 	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "objeto criado", content = {
 			@Content(mediaType = "application/json", schema = @Schema(implementation = ResponseEntity.class)) }),

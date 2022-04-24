@@ -9,7 +9,7 @@ import javax.validation.Valid;
 import oas.nalomy.sebpapi.base.domain.base.BaseDomain;
 import oas.nalomy.sebpapi.base.domain.base.BaseService;
 import oas.nalomy.sebpapi.base.exception.SebpNotFoundException;
-import oas.nalomy.sebpapi.base.payload.request.EnabledRequest;
+import oas.nalomy.sebpapi.base.payload.request.EnabledOrDisabledRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -113,7 +113,7 @@ public class GenericRestController<T extends BaseDomain, S extends BaseService<T
 			@ApiResponse(responseCode = "204", description = "Nenhum objeto encontrado", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Nenhum recurso encontrado", content = @Content)})
 	@PutMapping("/enabled-disabled")
-	public ResponseEntity<?> enabledOrDisabled(@Valid @RequestBody EnabledRequest request) {
+	public ResponseEntity<?> enabledOrDisabled(@Valid @RequestBody EnabledOrDisabledRequest request) {
 		return this.service.findById(request.getId()).map(record -> {
 			this.service.enabledOrDisabled(request.getId(), request.isEnabledOrDisabled());
 			return ResponseEntity.ok().build();

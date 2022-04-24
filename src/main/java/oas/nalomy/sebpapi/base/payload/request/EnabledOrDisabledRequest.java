@@ -8,12 +8,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EnabledRequest {
+public class EnabledOrDisabledRequest {
 	@NotNull
 	@Positive
 	private long id;
 
 	@NotNull
 	private boolean enabledOrDisabled;
-
 }

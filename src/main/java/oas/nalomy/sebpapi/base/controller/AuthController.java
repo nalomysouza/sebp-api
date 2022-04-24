@@ -13,7 +13,7 @@ import oas.nalomy.sebpapi.base.domain.User;
 import oas.nalomy.sebpapi.base.domain.repository.RoleRepository;
 import oas.nalomy.sebpapi.base.domain.repository.UserRepository;
 import oas.nalomy.sebpapi.base.payload.request.LoginRequest;
-import oas.nalomy.sebpapi.base.payload.request.SignupRequest;
+import oas.nalomy.sebpapi.base.payload.request.SignUpRequest;
 import oas.nalomy.sebpapi.base.payload.response.JwtResponse;
 import oas.nalomy.sebpapi.base.payload.response.MessageResponse;
 import oas.nalomy.sebpapi.base.security.jwt.JwtUtils;
@@ -71,7 +71,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
